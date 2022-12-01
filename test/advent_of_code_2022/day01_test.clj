@@ -3,7 +3,7 @@
    [clojure.test :refer :all]
    [advent-of-code-2022.day01 :refer :all]))
 
-(def ^:private example-input "1000
+(def ^:private example-input (parse-input "1000
 2000
 3000
 
@@ -16,7 +16,9 @@
 8000
 9000
 
-10000")
+10000"))
+
+(def ^:private input (parse-input (slurp "resources/day01.txt")))
 
 (deftest day01-1-example-test
   (testing "day01-1 example"
@@ -24,7 +26,7 @@
 
 (deftest day01-1-test
   (testing "day01-1 example"
-    (is (= [172 70509] (day01-1 (slurp "resources/day01.txt"))))))
+    (is (= [172 70509] (day01-1 input)))))
 
 
 (deftest day01-2-example-test
@@ -33,4 +35,4 @@
 
 (deftest day01-2-test
   (testing "day01-2 example"
-    (is (= 208567 (day01-2 (slurp "resources/day01.txt"))))))
+    (is (= 208567 (day01-2 input)))))
