@@ -13,14 +13,14 @@ C Z"))
   (testing "day02-1 example"
     (is (= 15 (day02-1 example-input)))))
 
-(deftest day01-1-test
+(deftest day02-1-test
   (testing "day01-1 example"
     (is (= 12855 (day02-1 input)))))
 
-(deftest day01-2-example-test
+(deftest day02-2-example-test
   (testing "day01-2 example"
     (is (= 12 (day02-2 example-input)))))
 
-(deftest day01-2-test
+(deftest day02-2-test
   (testing "day01-2 example"
-    (is (= 208567 (day02-2 input)))))
+    (is (= 13726 (day02-2 input)))))
