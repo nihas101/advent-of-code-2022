@@ -7,7 +7,7 @@
    (fn [^long i elf-cals] [(inc i) (u/read-longs elf-cals u/line-endings)])
    (u/split-sections input)))
 
-(def ^:private sum-of-calories
+(defonce ^:private sum-of-calories
   (map (fn [[i elf-cals]] [i (reduce + elf-cals)])))
 
 (defn- reduce-indexed-calories [f init input]
