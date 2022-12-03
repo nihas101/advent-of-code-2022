@@ -60,8 +60,11 @@
 
 ;; Strings
 
-(defn split-sections [s]
-  (string/split s #"(\r?\n){2,}"))
+(defn split-sections
+  ([s]
+   (string/split s #"(\r?\n){2,}"))
+  ([s re]
+   (string/split s re)))
 
 (def line-endings #"\r?\n")
 
