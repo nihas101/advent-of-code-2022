@@ -68,8 +68,11 @@
 
 (def line-endings #"\r?\n")
 
-(defn split-pairs [s]
-  (mapv #(string/split % #"\s") (string/split s line-endings)))
+(defn split-pairs
+  ([s]
+   (split-pairs s #"\s"))
+  ([s del]
+   (mapv #(string/split % del) (string/split s line-endings))))
 
 (defn read-longs [s split-on]
   (mapv #(Long/parseLong %) (string/split (string/trim s) split-on)))
