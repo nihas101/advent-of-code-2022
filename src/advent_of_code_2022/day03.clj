@@ -11,9 +11,8 @@
         (range (int a) (inc (int z)))))
 
 (defonce ^:private priority
-  (into {}
-        (concat (chars->priority-mapping \a \z 96)
-                (chars->priority-mapping \A \Z 38))))
+  (into {} (concat (chars->priority-mapping \a \z 96)
+                   (chars->priority-mapping \A \Z 38))))
 
 (defn day03 [rucksack-splitter]
   (fn [rucksacks]
@@ -25,10 +24,7 @@
      + rucksacks)))
 
 (defonce day03-1
-  (day03
-   (map (fn [rucksack]
-          (mapv (partial into #{})
-                (split-at (quot (count rucksack) 2) rucksack))))))
+  (day03 (map #(->> % (split-at (quot (count %) 2)) (mapv set)))))
 
 (defonce day03-2
-  (day03 (comp (map (partial into #{})) (partition-all 3))))
+  (day03 (comp (map set) (partition-all 3))))
