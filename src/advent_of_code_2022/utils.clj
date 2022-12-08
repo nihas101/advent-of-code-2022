@@ -79,13 +79,13 @@
 
 ;; Input parsing
 
-(defn- vals->pos+val [height-lines]
-  (mapcat (fn [hs y] (mapv (fn [h x] [[x y] (Long/parseLong (str h))])
+(defn- vals->pos+val [values]
+  (mapcat (fn [hs x] (mapv (fn [h y] [[x y] (Long/parseLong (str h))])
                            hs (range)))
-          height-lines (range)))
+          values (range)))
 
-(defn parse-positional-map [height-map]
-  (let [height-lines (string/split height-map line-endings)]
-    (reduce conj {:width (count (first height-lines))
-                  :height (count height-lines)}
-            (vals->pos+val height-lines))))
+(defn parse-positional-map [vals-map]
+  (let [vals-lines (string/split vals-map line-endings)]
+    (reduce conj {:width (count (first vals-lines))
+                  :height (count vals-lines)}
+            (vals->pos+val vals-lines))))
