@@ -24,6 +24,9 @@
 
 (defn abs ^long [^long x] (max x (- x)))
 
+(defn sign ^long [^long x]
+  (if (pos? x) 1 -1))
+
 (defn extended-gcd
   "https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm"
   [^long a ^long b]
@@ -79,13 +82,15 @@
 
 ;; Input parsing
 
-(defn- vals->pos+val [values]
-  (mapcat (fn [hs x] (mapv (fn [h y] [[x y] (Long/parseLong (str h))])
+(defn- vals->pos+val [values val-parser]
+  (mapcat (fn [hs y] (mapv (fn [h x] [[x y] (val-parser h)])
                            hs (range)))
           values (range)))
 
-(defn parse-positional-map [vals-map]
-  (let [vals-lines (string/split vals-map line-endings)]
-    (reduce conj {:width (count (first vals-lines))
-                  :height (count vals-lines)}
-            (vals->pos+val vals-lines))))
+(defn parse-positional-map
+  ([vals-map] (parse-positional-map vals-map #(Long/parseLong (str %))))
+  ([vals-map val-parser]
+   (let [vals-lines (string/split vals-map line-endings)]
+     (reduce conj {:width (count (first vals-lines))
+                   :height (count vals-lines)}
+             (vals->pos+val vals-lines val-parser)))))
