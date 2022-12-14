@@ -69,7 +69,7 @@
   ([s re]
    (string/split s re)))
 
-(def line-endings #"\r?\n")
+(def line-endings #"\s*\r?\n\s*")
 
 (defn split-pairs
   ([s]
