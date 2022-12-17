@@ -59,7 +59,7 @@
     (update-in g [n :tunnels] #(apply dissoc % broken-valve-nodes))))
 
 (defn- remove-valves-nodes [graph broken-valve-nodes]
-  (reduce #(dissoc %1 %2)
+  (reduce dissoc
           (reduce (remove-verts broken-valve-nodes) graph (mapv first graph))
           broken-valve-nodes))
 
