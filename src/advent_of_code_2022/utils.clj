@@ -15,6 +15,25 @@
   (or value
       [(tree->vec left) (tree->vec right)]))
 
+;; Graph
+
+(defn bfs [start-state end-val neighbours path-fn]
+  (loop [q (conj clojure.lang.PersistentQueue/EMPTY [start-state (path-fn)])
+         visited #{}]
+    (let [[[_ val :as c] path-value] (first q)
+          q (pop q)
+          neighbours (when c (neighbours c visited))]
+      (cond
+        ;; Found the end
+        (= val end-val) (path-fn path-value)
+        ;; Check the neighbours
+        neighbours (recur (into q (mapv (fn [n] [n (path-fn path-value c)]) neighbours))
+                          (into visited neighbours))
+        ;; Dead end
+        (seq q) (recur q (into visited neighbours))
+        ;; No path
+        :else nil))))
+
 ;; Map
 
 (defn remove-vals [pred m]
