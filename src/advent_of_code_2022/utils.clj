@@ -17,22 +17,30 @@
 
 ;; Graph
 
-(defn bfs [start-state end-val neighbours path-fn]
-  (loop [q (conj clojure.lang.PersistentQueue/EMPTY [start-state (path-fn)])
-         visited #{}]
-    (let [[[_ val :as c] path-value] (first q)
-          q (pop q)
-          neighbours (when c (neighbours c visited))]
+(defn pruning-bfs [start-state neighbours visited-state branch-score continue? path-fn]
+  (loop [q (conj clojure.lang.PersistentQueue/EMPTY start-state)
+         visited #{}
+         best-branch-score (long 0)
+         path-val (path-fn)]
+    (let [c (first q)
+          q (pop q)]
       (cond
-        ;; Found the end
-        (= val end-val) (path-fn path-value)
-        ;; Check the neighbours
-        neighbours (recur (into q (mapv (fn [n] [n (path-fn path-value c)]) neighbours))
-                          (into visited neighbours))
-        ;; Dead end
-        (seq q) (recur q (into visited neighbours))
-        ;; No path
-        :else nil))))
+        (continue? c) (let [nz (neighbours c visited best-branch-score)]
+                        (recur (into q nz)
+                               (into visited (mapv visited-state nz))
+                               ^long (reduce max best-branch-score (mapv branch-score nz))
+                               (path-fn path-val c)))
+        (seq q) (recur q
+                       visited
+                       best-branch-score
+                       (path-fn path-val c))
+        :else (path-fn path-val c)))))
+
+(defn bfs [start-state end-val neighbours visited-state path-fn]
+  (pruning-bfs start-state neighbours visited-state
+               (constantly 0)
+               (fn [[n v]] (and n (not= v end-val)))
+               path-fn))
 
 ;; Map
 
