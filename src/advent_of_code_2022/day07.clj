@@ -9,7 +9,7 @@
 (defn- change-dir [state d]
   (cond
     (string/starts-with? d "/") (assoc state :cd [d])
-    (= d "..") (update state :cd #(vec (butlast %)))
+    (= d "..") (update state :cd pop)
     :else (update state :cd conj d)))
 
 (defn- update-dir-sizes-fn [size]
