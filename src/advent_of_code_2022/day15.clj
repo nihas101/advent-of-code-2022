@@ -45,12 +45,6 @@
 ;; This means we only need to search the positions on the edges to find the
 ;; beacon producing the distress signal
 
-(defn- transduce-first
-  ([] [])
-  ([result] result)
-  ([_ input]
-   (reduced input)))
-
 (defn beacon-candidates [sensors]
   (fn [y]
     (transduce
@@ -65,14 +59,16 @@
   ([sensors] (day15-2 sensors 0 4000000))
   ([sensors ^long min-pos ^long max-pos]
    (let [[^long x ^long y]
-         (transduce
-          (comp
-           (mapcat (beacon-candidates sensors))
-           (filter (fn [[x]] (< min-pos x max-pos)))
-           (drop-while (covered-by-sensor? sensors)))
-          transduce-first
-          ;; The required constallation is less likely to happen on the border,
-          ;; so we check these positions last (for the y-dimension at least)
-          (interleave (range (quot max-pos 2) min-pos -1)
-                      (range (inc (quot max-pos 2)) max-pos)))]
+         (first
+          (transduce
+           (comp
+            (mapcat (beacon-candidates sensors))
+            (filter (fn [[x]] (< min-pos x max-pos)))
+            (drop-while (covered-by-sensor? sensors))
+            (take 1))
+           conj []
+           ;; The required constallation is less likely to happen on the border,
+           ;; so we check these positions last (for the y-dimension at least)
+           (interleave (range (quot max-pos 2) min-pos -1)
+                       (range (inc (quot max-pos 2)) max-pos))))]
      (+ (* x 4000000) y))))
