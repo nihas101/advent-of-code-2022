@@ -25,7 +25,7 @@
     (is (= [4 24000] (day01-1 example-input)))))
 
 (deftest day01-1-test
-  (testing "day01-1 example"
+  (testing "day01-1"
     (is (= [172 70509] (day01-1 input)))))
 
 
@@ -34,5 +34,5 @@
     (is (= 45000 (day01-2 example-input)))))
 
 (deftest day01-2-test
-  (testing "day01-2 example"
+  (testing "day01-2"
     (is (= 208567 (day01-2 input)))))

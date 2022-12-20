@@ -16,7 +16,7 @@
     (is (= 21 (day08-1 example-input)))))
 
 (deftest day08-1-test
-  (testing "day08-1 example"
+  (testing "day08-1"
     (is (= 1792 (day08-1 input)))))
 
 (deftest day08-2-example-test
@@ -24,5 +24,5 @@
     (is (= 8 (day08-2 example-input)))))
 
 (deftest day08-2-test
-  (testing "day08-2 example"
+  (testing "day08-2"
     (is (= 334880 (day08-2 input)))))

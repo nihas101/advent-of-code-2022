@@ -16,7 +16,7 @@ abdefghi"))
     (is (= 31 (day12-1 example-input)))))
 
 (deftest day12-1-test
-  (testing "day12-1 example"
+  (testing "day12-1"
     (is (= 456 (day12-1 input)))))
 
 (deftest day12-2-example-test
@@ -24,5 +24,5 @@ abdefghi"))
     (is (= 29 (day12-2 example-input)))))
 
 (deftest day12-2-test
-  (testing "day12-2 example"
+  (testing "day12-2"
     (is (= 454 (day12-2 input)))))

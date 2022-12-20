@@ -20,7 +20,7 @@ move 1 from 1 to 2"))
     (is (= "CMZ" (day05-1 example-input)))))
 
 (deftest day05-1-test
-  (testing "day05-1 example"
+  (testing "day05-1"
     (is (= "TPGVQPFDH" (day05-1 input)))))
 
 (deftest day05-2-example-test
@@ -28,5 +28,5 @@ move 1 from 1 to 2"))
     (is (= "MCD" (day05-2 example-input)))))
 
 (deftest day05-2-test
-  (testing "day05-2 example"
+  (testing "day05-2"
     (is (= "DMRDFRHHH" (day05-2 input)))))

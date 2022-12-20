@@ -165,7 +165,7 @@ noop"))
     (is (= 13140 (day10-1 example-input-1)))))
 
 (deftest day10-1-test
-  (testing "day10-1 example"
+  (testing "day10-1"
     (is (= 11780 (day10-1 input)))))
 
 (deftest day10-2-example-test
@@ -179,7 +179,7 @@ noop"))
            (day10-2 example-input-1)))))
 
 (deftest day10-2-test
-  (testing "day10-2 example"
+  (testing "day10-2"
     (is (= (str "###..####.#..#.#....###...##..#..#..##..\n"
                 "#..#....#.#..#.#....#..#.#..#.#..#.#..#.\n"
                 "#..#...#..#..#.#....###..#..#.#..#.#..#.\n"

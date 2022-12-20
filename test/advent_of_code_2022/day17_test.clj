@@ -12,7 +12,7 @@
     (is (= 3068 (day17-1 example-input)))))
 
 (deftest day17-1-test
-  (testing "day17-1 example"
+  (testing "day17-1"
     (is (= 3141 (day17-1 input)))))
 
 (deftest day17-2-example-test
@@ -20,5 +20,5 @@
     (is (= 1514285714288 (day17-2 example-input)))))
 
 (deftest day17-2-test
-  (testing "day17-2 example"
+  (testing "day17-2"
     (is (= 1561739130391 (day17-2 input)))))

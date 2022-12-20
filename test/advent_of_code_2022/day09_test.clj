@@ -21,7 +21,7 @@ R 2"))
     (is (= 13 (day09 state-1 example-input)))))
 
 (deftest day09-1-test
-  (testing "day09-1 example"
+  (testing "day09-1"
     (is (= 6406 (day09 state-1 input)))))
 
 (def ^:private state-2 {:rope [[0 0]
@@ -35,5 +35,5 @@ R 2"))
     (is (= 1 (day09 state-2 example-input)))))
 
 (deftest day09-2-test
-  (testing "day09-2 example"
+  (testing "day09-2"
     (is (= 2643 (day09 state-2 input)))))

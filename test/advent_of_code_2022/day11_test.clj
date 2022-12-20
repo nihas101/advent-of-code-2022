@@ -38,7 +38,7 @@ Monkey 3:
     (is (= 10605 (day11-1 example-input)))))
 
 (deftest day11-1-test
-  (testing "day11-1 example"
+  (testing "day11-1"
     (is (= 182293 (day11-1 input)))))
 
 (deftest day11-2-example-test
@@ -46,5 +46,5 @@ Monkey 3:
     (is (= 2713310158 (day11-2 example-input)))))
 
 (deftest day11-2-test
-  (testing "day11-2 example"
+  (testing "day11-2"
     (is (= 54832778815 (day11-2 input)))))

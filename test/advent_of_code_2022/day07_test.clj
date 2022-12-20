@@ -34,7 +34,7 @@ $ ls
     (is (= 95437 (day07-1 example-input)))))
 
 (deftest day07-1-test
-  (testing "day07-1 example"
+  (testing "day07-1"
     (is (= 1084134 (day07-1 input)))))
 
 (deftest day07-2-example-test
@@ -42,5 +42,5 @@ $ ls
     (is (= 24933642 (day07-2 example-input)))))
 
 (deftest day07-2-test
-  (testing "day07-2 example"
+  (testing "day07-2"
     (is (= 6183184 (day07-2 input)))))

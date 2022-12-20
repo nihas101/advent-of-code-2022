@@ -21,7 +21,7 @@ Valve JJ has flow rate=21; tunnel leads to valve II"))
     (is (= 1651 (day16-1 "AA" example-input)))))
 
 (deftest day16-1-test
-  (testing "day16-1 example"
+  (testing "day16-1"
     (is (= 1659 (day16-1 "AA" input)))))
 #_
 (deftest day16-2-example-test
@@ -29,5 +29,5 @@ Valve JJ has flow rate=21; tunnel leads to valve II"))
     (is (= 1707 (day16-2 "AA" example-input)))))
 
 (deftest day16-2-test
-  (testing "day16-2 example"
+  (testing "day16-2"
     (is (= 2382 (day16-2 "AA" input)))))

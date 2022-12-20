@@ -25,7 +25,7 @@ Sensor at x=20, y=1: closest beacon is at x=15, y=3"))
     (is (= 26 (day15-1 example-input 10)))))
 
 (deftest day15-1-test
-  (testing "day15-1 example"
+  (testing "day15-1"
     (is (= 4725496 (day15-1 input)))))
 
 (deftest day15-2-example-test
@@ -33,5 +33,5 @@ Sensor at x=20, y=1: closest beacon is at x=15, y=3"))
     (is (= 56000011 (day15-2 example-input 0 20)))))
 
 (deftest day15-2-test
-  (testing "day15-2 example"
+  (testing "day15-2"
     (is (= 12051287042458 (day15-2 input)))))

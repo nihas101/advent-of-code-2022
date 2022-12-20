@@ -17,7 +17,7 @@
     (is (= 2 (day04-1 example-input)))))
 
 (deftest day04-1-test
-  (testing "day04-1 example"
+  (testing "day04-1"
     (is (= 567 (day04-1 input)))))
 
 (deftest day04-2-example-test
@@ -25,5 +25,5 @@
     (is (= 4 (day04-2 example-input)))))
 
 (deftest day04-2-test
-  (testing "day04-2 example"
+  (testing "day04-2"
     (is (= 907 (day04-2 input)))))

@@ -17,7 +17,7 @@ CrZsJsPPZsGzwwsLwLmpwMDw"))
     (is (= 157 (day03-1 example-input)))))
 
 (deftest day03-1-test
-  (testing "day03-1 example"
+  (testing "day03-1"
     (is (= 8039 (day03-1 input)))))
 
 (deftest day03-2-example-test
@@ -25,5 +25,5 @@ CrZsJsPPZsGzwwsLwLmpwMDw"))
     (is (= 70 (day03-2 example-input)))))
 
 (deftest day03-2-test
-  (testing "day03-2 example"
+  (testing "day03-2"
     (is (= 2510 (day03-2 input)))))

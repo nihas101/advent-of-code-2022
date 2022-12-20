@@ -14,7 +14,7 @@ C Z"))
     (is (= 15 (day02-1 example-input)))))
 
 (deftest day02-1-test
-  (testing "day02-1 example"
+  (testing "day02-1"
     (is (= 12855 (day02-1 input)))))
 
 (deftest day02-2-example-test
@@ -22,5 +22,5 @@ C Z"))
     (is (= 12 (day02-2 example-input)))))
 
 (deftest day02-2-test
-  (testing "day02-2 example"
+  (testing "day02-2"
     (is (= 13726 (day02-2 input)))))

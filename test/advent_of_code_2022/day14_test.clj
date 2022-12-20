@@ -13,7 +13,7 @@
     (is (= 24 (day14-1 example-input)))))
 
 (deftest day14-1-test
-  (testing "day14-1 example"
+  (testing "day14-1"
     (is (= 1003 (day14-1 input)))))
 
 (deftest day14-2-example-test
@@ -21,5 +21,5 @@
     (is (= 93 (day14-2 example-input)))))
 
 (deftest day14-2-test
-  (testing "day14-2 example"
+  (testing "day14-2"
     (is (= 25771 (day14-2 input)))))

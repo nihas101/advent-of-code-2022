@@ -32,7 +32,7 @@
     (is (= 11 (day06-1 example-input-5)))))
 
 (deftest day06-1-test
-  (testing "day06-1 example"
+  (testing "day06-1"
     (is (= 1109 (day06-1 input)))))
 
 (deftest day06-2-example-1-test
@@ -56,5 +56,5 @@
     (is (= 26 (day06-2 example-input-5)))))
 
 (deftest day06-2-test
-  (testing "day06-2 example"
+  (testing "day06-2"
     (is (= 3965 (day06-2 input)))))
