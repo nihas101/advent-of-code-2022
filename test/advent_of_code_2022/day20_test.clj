@@ -6,32 +6,38 @@
 (deftest day20-1-tiny-1-example-test
   (testing "day20-1 tiny example 1"
     (is (= [0 0 1 0]
-           (decrypt (parse-input "0\n1\n0\n0"))))))
+           (#'advent-of-code-2022.day20/decrypt 
+            (parse-input "0\n1\n0\n0"))))))
 
 (deftest day20-1-tiny-2-example-test
   (testing "day20-1 tiny example 2"
     (is (= [2 0 0 0 0]
-           (decrypt (parse-input "0\n0\n2\n0\n0"))))))
+           (#'advent-of-code-2022.day20/decrypt 
+            (parse-input "0\n0\n2\n0\n0"))))))
 
 (deftest day20-1-tiny-3-example-test
   (testing "day20-1 tiny example 3"
     (is (= [-1 0 0 0]
-           (decrypt (parse-input "0\n-1\n0\n0"))))))
+           (#'advent-of-code-2022.day20/decrypt 
+            (parse-input "0\n-1\n0\n0"))))))
 
 (deftest day20-1-tiny-4-example-test
   (testing "day20-1 tiny example 4"
     (is (= [0 0 -2 0]
-           (decrypt (parse-input "0\n-2\n0\n0"))))))
+           (#'advent-of-code-2022.day20/decrypt
+            (parse-input "0\n-2\n0\n0"))))))
 
 (deftest day20-1-tiny-5-example-test
   (testing "day20-1 tiny example 5"
     (is (= [0 5 0 0]
-           (decrypt (parse-input "0\n0\n5\n0"))))))
+           (#'advent-of-code-2022.day20/decrypt
+            (parse-input "0\n0\n5\n0"))))))
 
 (deftest day20-1-tiny-6-example-test
   (testing "day20-1 tiny example 6"
     (is (= [0 0 -18 0]
-           (decrypt (parse-input "0\n0\n-18\n0"))))))
+           (#'advent-of-code-2022.day20/decrypt
+            (parse-input "0\n0\n-18\n0"))))))
 
 (defonce ^:private example-input (parse-input "1
 2

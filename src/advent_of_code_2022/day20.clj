@@ -5,12 +5,12 @@
    (map-indexed vector)
    conj [] (read-string (str "[" input "]"))))
 
-(defn mix-index [^long val ^long idx ^long coll-count]
+(defn- mix-index [^long val ^long idx ^long coll-count]
   (if (zero? val)
     idx
     (mod (+ val idx) (dec coll-count))))
 
-(defn mix [^java.util.LinkedList decrypted
+(defn- mix [^java.util.LinkedList decrypted
            [_ val :as e] coll-count]
   (let [old-idx (.indexOf decrypted e)]
     (.remove decrypted e)
@@ -22,24 +22,20 @@
     (.addAll ll coll)
     ll))
 
-(defn decrypt
+(defn- decrypt
   ([encrypted]
    (mapv second (decrypt encrypted (linked-list encrypted))))
   ([encrypted decrypted]
-   (decrypt encrypted decrypted (count encrypted)))
-  ([encrypted decrypted coll-count]
-   (reduce (fn [d e] (mix d e coll-count))
+   (reduce (fn [d e] (mix d e (count encrypted)))
            decrypted encrypted)))
 
 (defn- decrypted-sum [^clojure.lang.PersistentVector decrypted]
   (let [start-index (.indexOf decrypted 0)]
-    (+
-     ^long (get decrypted (mod (+ start-index 1000)
-                               (count decrypted)))
-     ^long (get decrypted (mod (+ start-index 2000)
-                               (count decrypted)))
-     ^long (get decrypted (mod (+ start-index 3000)
-                               (count decrypted))))))
+    (transduce
+     (comp
+      (map #(mod (+ start-index %) (count decrypted)))
+      (map decrypted))
+     + [1000 2000 3000])))
 
 (defonce day20-1 (comp decrypted-sum decrypt))
 
