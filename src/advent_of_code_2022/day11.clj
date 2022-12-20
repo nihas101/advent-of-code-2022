@@ -53,13 +53,16 @@
      (recur (monkeying-a-round monkeys #(quot ^long % 3))
             (dec rounds)))))
 
-(defn- common-multiple [monkeys]
+(defn- common-multiple ^long [monkeys]
   (reduce * (mapv :test monkeys)))
 
 (defn day11-2
   ([monkeys] (day11-2 monkeys 10000))
   ([monkeys ^long rounds]
-   (if (zero? rounds)
-     (monkey-business monkeys)
-     (recur (monkeying-a-round monkeys #(mod ^long % (common-multiple monkeys)))
-            (dec rounds)))))
+   (let [common-multiple (common-multiple monkeys)]
+     (loop [monkeys monkeys
+            rounds rounds]
+       (if (zero? rounds)
+         (monkey-business monkeys)
+         (recur (monkeying-a-round monkeys #(mod ^long % common-multiple))
+                (dec rounds)))))))
