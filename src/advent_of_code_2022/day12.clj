@@ -48,9 +48,16 @@
      start-points)))
 
 (defn day12-1 [grid]
-  (day12 grid (mapv (fn [[s c]] [s c 0])
-                    (take 1 (drop-while (fn [[_ sp]] (not= sp \S)) grid)))))
+  (day12 grid (transduce
+               (comp
+                (drop-while (comp (complement #{\S}) second))
+                (take 1)
+                (map #(conj % 0)))
+               conj [] grid)))
 
 (defn day12-2 [grid]
-  (day12 grid (mapv (fn [[s c]] [s c 0])
-                    (filter #(-> % second #{\S \a}) grid))))
+  (day12 grid (transduce
+               (comp
+                (filter #(-> % second #{\S \a}))
+                (map (fn [[s c]] [s c 0])))
+               conj [] grid)))

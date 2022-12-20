@@ -20,7 +20,7 @@
 (defn pruning-bfs [start-state neighbours visited-state branch-score continue? path-fn]
   (loop [q (conj clojure.lang.PersistentQueue/EMPTY start-state)
          visited #{}
-         best-branch-score (long 0)
+         best-branch-score (branch-score)
          path-val (path-fn)]
     (let [c (first q)
           q (pop q)]
