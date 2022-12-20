@@ -120,33 +120,26 @@
   ([] 0)
   ([[_ resources]] (:geode resources)))
 
+(defn- day19 [blueprints robots resources minutes quality-fn reducing-fn]
+  (reduce reducing-fn
+          (pmap
+           (fn [{:keys [^long plan] :as blueprint}]
+             (let [factory (dissoc blueprint :plan)
+                   neighbours (fn [curr visited best-branch-score]
+                                (build-robot+mine-ore factory curr visited
+                                                      best-branch-score))]
+               (quality-fn plan
+                           (u/pruning-bfs [robots resources minutes]
+                                          neighbours identity
+                                          branch-score continue? max-resources))))
+           blueprints)))
+
 (defn day19-1
   ([blueprints] (day19-1 blueprints init-robots init-ore 24))
   ([blueprints robots resources minutes]
-   (reduce +
-           (pmap
-            (fn [{:keys [^long plan] :as blueprint}]
-              (let [factory (dissoc blueprint :plan)
-                    neighbours (fn [curr visited best-branch-score]
-                                 (build-robot+mine-ore factory curr visited 
-                                                       best-branch-score))]
-                (* plan
-                   (u/pruning-bfs [robots resources minutes]
-                                       neighbours identity
-                                       branch-score continue? max-resources))))
-            blueprints))))
+   (day19 blueprints robots resources minutes * +)))
 
 (defn day19-2
   ([blueprints] (day19-2 (take 3 blueprints) init-robots init-ore 32))
   ([blueprints robots resources minutes]
-   (reduce *
-           (pmap
-            (fn [blueprint]
-              (let [factory (dissoc blueprint :plan)
-                    neighbours (fn [curr visited best-branch-score]
-                                 (build-robot+mine-ore factory curr visited
-                                                       best-branch-score))]
-                (u/pruning-bfs [robots resources minutes]
-                               neighbours identity
-                               branch-score continue? max-resources)))
-            blueprints))))
+   (day19 blueprints robots resources minutes (fn [_ geodes] geodes) *)))
