@@ -85,15 +85,24 @@
         old-graph
         (recur new-graph)))))
 
+(defn- broken-valves [graph]
+  (transduce
+   (comp
+    (remove (comp #{"AA"} first))
+    (map second)
+    (filter (comp zero? :flow-rate))
+    (map :valve))
+   conj [] graph))
+
 (defn day16-1 [current-node graph]
-  (let [broken-valves (mapv :valve (filter (comp zero? :flow-rate) (mapv second (remove (comp #{"AA"} first) graph))))]
+  (let [broken-valves (broken-valves graph)]
     (:total-flow-rate (dfs current-node (remove-valves-nodes (transitive-closure graph) broken-valves) 30))))
 
 ;; Very unhappy with this one. After putzing around for a day I could only find
 ;; solutions that work on either the example OR the real input, but not on both.
 ;; I decided to stick with the solution that works on the real input
 (defn day16-2 [current-node graph]
-  (let [broken-valves (mapv :valve (filter (comp zero? :flow-rate) (mapv second (remove (comp #{"AA"} first) graph))))
+  (let [broken-valves (broken-valves graph)
         g (remove-valves-nodes (transitive-closure graph) broken-valves)
         {:keys [open-valves ^long total-flow-rate]} (dfs current-node g 26)
         gg (remove-valves-nodes g (mapv first open-valves))]
