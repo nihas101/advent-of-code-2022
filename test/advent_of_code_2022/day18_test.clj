@@ -28,7 +28,7 @@
     (is (= 64 (day18-1 example-input)))))
 
 (deftest day18-1-test
-  (testing "day18-1 example"
+  (testing "day18-1"
     (is (= 4636 (day18-1 input)))))
 
 (deftest day18-2-mini-example-test
@@ -40,5 +40,5 @@
     (is (= 58 (day18-2 example-input)))))
 
 (deftest day18-2-test
-  (testing "day18-2 example"
+  (testing "day18-2"
     (is (= 2572 (day18-2 input)))))

@@ -54,7 +54,7 @@
 (defn manhattan-distance ^long [[^long x1 ^long y1] [^long x2 ^long y2]]
   (+ (abs (- x1 x2)) (abs (- y1 y2))))
 
-(defonce min-max (juxt #(apply min %) #(apply max %)))
+(defonce min+max (juxt #(apply min %) #(apply max %)))
 
 (defn sign ^long [^long x]
   (if (pos? x) 1 -1))

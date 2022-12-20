@@ -21,7 +21,7 @@
 (defn day18-1 [lava-droplets]
   (count (lava-droplets-surface lava-droplets)))
 
-(defonce ^:private min-max (juxt #(dec ^long (apply min %))
+(defonce ^:private min+max (juxt #(dec ^long (apply min %))
                                  #(inc ^long (apply max %))))
 
 (defn- expand-water [water air lava-droplets]
@@ -61,8 +61,8 @@
 
 (defn day18-2 [lava-droplets]
   (let [surface (lava-droplets-surface lava-droplets)
-        x (min-max (mapv first surface))
-        y (min-max (mapv second surface))
-        z (min-max (mapv #(nth % 2) surface))
+        x (min+max (mapv first surface))
+        y (min+max (mapv second surface))
+        z (min+max (mapv #(nth % 2) surface))
         water (fill-water (water-perimeter x y z) lava-droplets)]
     (count (filter (fn [pos] (some water (neighbours pos))) surface))))
