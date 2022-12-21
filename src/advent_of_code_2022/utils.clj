@@ -17,6 +17,14 @@
 
 ;; Graph
 
+(defn transitive-closure [initial-closure]
+  (let [new-closure (reduce (fn [closure [node cls]]
+                              (update closure node into (mapcat closure cls)))
+                            initial-closure initial-closure)]
+    (if (= new-closure initial-closure)
+      initial-closure
+      (recur new-closure))))
+
 (defn pruning-bfs [start-state neighbours visited-state branch-score continue? path-fn]
   (loop [q (conj clojure.lang.PersistentQueue/EMPTY start-state)
          visited #{}
