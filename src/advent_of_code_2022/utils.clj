@@ -109,6 +109,7 @@
   ([s re]
    (string/split s re)))
 
+(def line-endings-without-trim #"\r?\n")
 (def line-endings #"\s*\r?\n\s*")
 
 (defn split-pairs
@@ -130,7 +131,9 @@
 (defn parse-positional-map
   ([vals-map] (parse-positional-map vals-map #(Long/parseLong (str %))))
   ([vals-map val-parser]
-   (let [vals-lines (string/split vals-map line-endings)]
-     (reduce conj {:width (count (first vals-lines))
-                   :height (count vals-lines)}
-             (vals->pos+val vals-lines val-parser)))))
+   (parse-positional-map vals-map val-parser line-endings))
+  ([vals-map val-parser split-on]
+   (let [vals-lines (string/split vals-map split-on)]
+     {:width (reduce max (mapv count vals-lines))
+      :height (count vals-lines)
+      :positions (reduce conj {} (vals->pos+val vals-lines val-parser))})))

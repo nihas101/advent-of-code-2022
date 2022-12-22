@@ -16,9 +16,9 @@
 (defn- day04 [section-filter]
   (fn [elf-sections]
     (count
-     (filter (fn [[a b]] (or (section-filter a b)
-                             (section-filter b a)))
-             elf-sections))))
+     (filterv (fn [[a b]] (or (section-filter a b)
+                              (section-filter b a)))
+              elf-sections))))
 
 (defonce day04-1 (day04 section-contains?))
 

@@ -16,10 +16,10 @@
    (mapv (fn [y] [x y]) (range (inc y) h))
    (mapv (fn [x] [x y]) (range (inc x) w))))
 
-(defn- visible? [{:keys [height width] :as tree-map} pos]
+(defn- visible? [{:keys [positions height width]} pos]
   (let [neighbours (grid-neighbours pos height width)
-        tree-height (tree-map pos)]
-    (some true? (mapv (fn [dir] (every? #(< ^long % ^long tree-height) (mapv tree-map dir)))
+        tree-height (positions pos)]
+    (some true? (mapv (fn [dir] (every? #(< ^long % ^long tree-height) (mapv positions dir)))
                       neighbours))))
 
 (defn day08-1 [{:keys [^long height ^long width] :as tree-map}]
@@ -27,14 +27,14 @@
      (count (filter (partial visible? tree-map)
                     (all-inner-positions width height)))))
 
-(defn viewable-trees-count [tree-map ^long tree-height]
+(defn viewable-trees-count [{:keys [positions]} ^long tree-height]
   (fn [dir]
-    (let [[viewable [h & _]] (split-with #(< ^long % tree-height) (mapv tree-map dir))]
+    (let [[viewable [h & _]] (split-with #(< ^long % tree-height) (mapv positions dir))]
       (if h (inc (count viewable)) (count viewable)))))
 
-(defn- visible-positions [{:keys [height width] :as tree-map} pos]
+(defn- visible-positions [{:keys [positions height width] :as tree-map} pos]
   (let [neighbours (grid-neighbours pos height width)
-        tree-height (tree-map pos)]
+        tree-height (positions pos)]
     (transduce
      (map (viewable-trees-count tree-map tree-height))
      * neighbours)))

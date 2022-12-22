@@ -3,7 +3,7 @@
    [advent-of-code-2022.utils :as u]))
 
 (defn parse-input [input]
-  (u/parse-positional-map input identity))
+  (:positions (u/parse-positional-map input identity)))
 
 (defonce ^:private sym->height
   (into {} (concat
