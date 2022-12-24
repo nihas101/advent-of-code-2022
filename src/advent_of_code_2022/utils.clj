@@ -32,6 +32,7 @@
          path-val (path-fn)]
     (let [c (first q)
           q (pop q)]
+      #_(println :visited (count visited) :states-left (count q))
       (cond
         (continue? c) (let [nz (neighbours c visited best-branch-score)]
                         (recur (into q nz)
