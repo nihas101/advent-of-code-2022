@@ -2,19 +2,6 @@
   (:require
    [clojure.string :as string]))
 
-;; Trees
-
-(defn internal-node [left right]
-  {:left left
-   :right right})
-
-(defn leaf-node [value]
-  {:value value})
-
-(defn tree->vec [{:keys [left right value]}]
-  (or value
-      [(tree->vec left) (tree->vec right)]))
-
 ;; Graph
 
 (defn transitive-closure [initial-closure]
@@ -32,7 +19,6 @@
          path-val (path-fn)]
     (let [c (first q)
           q (pop q)]
-      #_(println :visited (count visited) :states-left (count q))
       (cond
         (continue? c) (let [nz (neighbours c visited best-branch-score)]
                         (recur (into q nz)
@@ -50,11 +36,6 @@
                (constantly 0)
                (fn [[n v]] (and n (not= v end-val)))
                path-fn))
-
-;; Map
-
-(defn remove-vals [pred m]
-  (apply dissoc m (mapv first (remove pred m))))
 
 ;; Math
 
